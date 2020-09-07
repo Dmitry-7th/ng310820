@@ -2,20 +2,24 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { ExampleModule } from './example/example.module';
-import { FormsModule } from '@angular/forms';
+import { HeaderComponent } from './header/header.component';
+import { SideMenuComponent } from './side-menu/side-menu.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedModule } from './shared/shared.module';
 // NgModule => es6 module
 // declarations - es6 let/const
 // imports - es6 import
 // exports - es6 export
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
+    SideMenuComponent
   ],
   imports: [
     BrowserModule,
-    ExampleModule,
-    FormsModule
+    SharedModule,
+    BrowserAnimationsModule,
   ],
   exports: [],
   providers: [],

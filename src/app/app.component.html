@@ -1,18 +1,8 @@
-<app-example>
-  <img
-    [src]="imgSrc"
-    [style.width.%]="imgWidth"
-    (click)="clickOnImg(div, $event)">
-  <div [innerHTML]="content" #div>
+<app-header [title]="myTitle" [drawer]="myDrawer"></app-header>
+<app-side-menu (setSideNavControl)="setSideNav($event)">
+  <ng-template #contentTemplate>
+    <div >main content</div>
+  </ng-template>
 
-  </div>
-
-  <input type="text"
-         #inputElement
-         (input)="search(inputElement.value)">
-
-  <div>
-    {{text}}
-  </div>
-</app-example>
+</app-side-menu>
 
