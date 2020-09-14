@@ -6,6 +6,8 @@ import { HeaderComponent } from './header/header.component';
 import { SideMenuComponent } from './side-menu/side-menu.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
+import { ProductCardComponent } from './product-card/product-card.component';
+import { ProductsFilterPipe } from './products-filter.pipe';
 // NgModule => es6 module
 // declarations - es6 let/const
 // imports - es6 import
@@ -14,7 +16,9 @@ import { SharedModule } from './shared/shared.module';
   declarations: [
     AppComponent,
     HeaderComponent,
-    SideMenuComponent
+    SideMenuComponent,
+    ProductCardComponent,
+    ProductsFilterPipe
   ],
   imports: [
     BrowserModule,

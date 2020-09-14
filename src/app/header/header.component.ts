@@ -9,16 +9,15 @@ import { MatDrawer } from '@angular/material/sidenav';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent
-  // OnInit,
-  // OnChanges, DoCheck, AfterViewInit, AfterContentInit,
-  // AfterViewChecked, AfterContentChecked
-{
+export class HeaderComponent {
 
   @Input()
   public set title(t: string) {
     this.ownTitle = t;
   };
+
+  public someClass = 'someClass value';
+  public condition = true;
 
   public ownTitle!: string;
 
