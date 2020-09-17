@@ -1,5 +1,5 @@
 import { Observable, of } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import { catchError, delay } from 'rxjs/operators';
 
 export interface IProduct {
   '_id': string;
@@ -85,4 +85,13 @@ export const products: IProduct[] = [
   }
 ];
 
-export const products$: Observable<IProduct[]> = of(products).pipe(delay(3000));
+export interface IProductsRes {
+  products: IProduct[];
+  serviceError: boolean | null;
+}
+
+export const products$: Observable<IProductsRes> = of(
+  {products, serviceError: null}
+).pipe(delay(3000), catchError(() => {
+  return [];
+}));

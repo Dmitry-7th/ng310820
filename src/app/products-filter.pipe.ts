@@ -2,16 +2,20 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { IProduct } from './data';
 
 @Pipe({
-  name: 'productsFilter'
+  name: 'productsFilter',
+  pure: false
 })
 export class ProductsFilterPipe implements PipeTransform {
 
-  public transform(products: IProduct[], searchTerm: string): IProduct[] {
-    console.log('productsFilter');
-    if (!searchTerm) {
-      return products;
+  public transform(products: IProduct[], searchTerm: string, onlyFavorites: boolean = false): IProduct[] {
+    let result: IProduct[] = products;
+    if (onlyFavorites) {
+      result = products.filter((product: IProduct) => product.isFavorite);
     }
-    return products.filter((product: IProduct) =>
+    if (!searchTerm) {
+      return result;
+    }
+    return result.filter((product: IProduct) =>
       `${product.title} ${product.price}`.toLocaleLowerCase().includes(searchTerm.toLowerCase()));
   }
 
