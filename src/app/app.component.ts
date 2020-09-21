@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Optional } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
-import { IProduct, products$ } from './data';
 import { Observable } from 'rxjs';
-import { pluck } from 'rxjs/operators';
 import { MatCheckboxChange } from '@angular/material/checkbox';
+import { IProduct, ProductsService } from './products.service';
 
 @Component({
   selector: 'app-root',
@@ -16,13 +15,20 @@ export class AppComponent implements OnInit {
   public myDrawer!: MatDrawer;
   public searchText = '';
   public onlyFavorites = false;
-  public products$: Observable<IProduct[]> = products$
-    .pipe(
-      pluck('products')
-      // map((res) => res.products)
-    );
+  public products$!: Observable<IProduct[]>; //this.productsService.getProducts();
+
+  public constructor(
+    // @Inject(ProductsService) private productsService: any
+    @Optional() private productsService: ProductsService
+  ) {
+  }
 
   public ngOnInit(): void {
+    // console.log(this.productsService);
+    this.products$ = this.productsService.getProducts();
+    // this.productsService.getProducts().subscribe((v) => {
+    //   console.log(v);
+    // });
   }
 
 
