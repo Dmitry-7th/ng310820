@@ -1,8 +1,8 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
-import { EMPTY, Observable } from 'rxjs';
-import { BASE_URL_TOKEN } from './config';
-import { catchError, filter, map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { BASE_URL_TOKEN } from '../../config';
+import { filter, map } from 'rxjs/operators';
 
 @Injectable()
 export class CustomInterceptorService implements HttpInterceptor {
@@ -14,7 +14,7 @@ export class CustomInterceptorService implements HttpInterceptor {
 
 
   public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log(req)
+    console.log(req);
     const headers: HttpHeaders = req.headers.append('Content-Type', 'application/json')
       .append('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImluZXBpcGVua28iLCJpYXQiOjE2MDA3MDg1MzJ9.Uch-jamBl7U9XF_m1riA9APROi_lO-mkDmnjjuv8Kv8');
 
@@ -28,10 +28,11 @@ export class CustomInterceptorService implements HttpInterceptor {
         filter(this._isHttpResponse),
         map((res) => {
           return res.clone({body: res.body?.data});
-        }),
-        catchError(() => {
-          return EMPTY;
         }));
+    // catchError(() => {
+    //   debugger
+    //   return EMPTY;
+    // }));
   }
 
   private _isHttpResponse(event: HttpEvent<any>): event is HttpResponse<any> {

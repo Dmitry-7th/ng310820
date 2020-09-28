@@ -11,7 +11,11 @@ export interface IProduct {
   'isFavorite': boolean;
 }
 
-@Injectable()
+@Injectable(
+  // {
+  //   providedIn: ProductsModule // TODO before initialization
+  // }
+)
 export class ProductsService {
 
   constructor(

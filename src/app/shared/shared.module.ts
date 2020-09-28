@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -11,6 +11,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CommonModule } from '@angular/common';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { CustomInterceptorService } from './services/custom-interceptor.service';
+import { BASE_URL_TOKEN, baseUrl } from '../config';
+import { AuthGuard } from './services/auth.guard';
+import { PreloadService } from './services/preload.service';
 
 
 @NgModule({
@@ -26,8 +31,30 @@ import { CommonModule } from '@angular/common';
     MatFormFieldModule,
     MatInputModule,
     MatCheckboxModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    HttpClientModule,
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: CustomInterceptorService,
+      multi: true,
+    },
   ]
 })
 export class SharedModule {
+  public static forRoot(): ModuleWithProviders<any> {
+    return  {
+      ngModule: SharedModule,
+      providers: [
+        {
+          provide: BASE_URL_TOKEN,
+          useValue: baseUrl,
+          multi: true
+        },
+        AuthGuard,
+        PreloadService
+      ]
+    }
+  }
 }
