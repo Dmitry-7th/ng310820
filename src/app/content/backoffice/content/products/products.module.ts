@@ -4,9 +4,9 @@ import { ProductsRoutingModule } from './products-routing.module';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { ProductsFilterPipe } from './products-filter.pipe';
 import { ProductsComponent } from './products.component';
-import { ProductsService } from './products.service';
 import { OneProductComponent } from './one-product/one-product.component';
 import { ProductResolverService } from './one-product/product-resolver.service';
+import { ProductsInjectorRedolverModule } from './products-injector-redolver.module';
 
 
 @NgModule({
@@ -18,10 +18,10 @@ import { ProductResolverService } from './one-product/product-resolver.service';
   ],
   imports: [
     SharedModule,
-    ProductsRoutingModule
+    ProductsRoutingModule,
+    ProductsInjectorRedolverModule
   ],
   providers: [
-    ProductsService,
     ProductResolverService
   ]
 })

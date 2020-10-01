@@ -1,1 +1,29 @@
-<p (click)="goToLogin()">Go to LogIn</p>
+<div class="auth-content">
+  <mat-card>
+    <mat-card-content>
+      <div [formGroup]="signupForm">
+        <p>Sign Up to continue</p>
+        <mat-form-field appearance="fill">
+          <input matInput placeholder="Username" type="text"
+                 formControlName="username" appUserValidator>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <input matInput placeholder="Email" type="text"
+                 formControlName="email">
+        </mat-form-field>
+        <div formGroupName="password">
+          <mat-form-field appearance="fill">
+            <input matInput placeholder="Password" type="password" formControlName="password">
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <input matInput placeholder="Confirm Password" type="password" formControlName="cpassword">
+          </mat-form-field>
+        </div>
+        <button mat-raised-button color="primary"  (click)="signup(signupForm.value)"
+                [disabled]="signupForm.invalid || signupForm.pending">Sign Up</button>
+        <a mat-button [routerLink]="['/login']">Sign Up</a>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  {{signupForm.pending}}
+</div>

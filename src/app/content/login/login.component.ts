@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  public userNameCtrl = new FormControl('', [Validators.required,
+    Validators.minLength(5)]);
+
+  public value = '';
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
 
+  public login(formValue: any): void {
+    console.log(formValue);
+  }
 }

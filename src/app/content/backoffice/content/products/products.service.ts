@@ -1,6 +1,7 @@
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ProductsInjectorRedolverModule } from './products-injector-redolver.module';
 
 export interface IProduct {
   '_id': string;
@@ -12,9 +13,9 @@ export interface IProduct {
 }
 
 @Injectable(
-  // {
-  //   providedIn: ProductsModule // TODO before initialization
-  // }
+  {
+    providedIn: ProductsInjectorRedolverModule // TODO before initialization
+  }
 )
 export class ProductsService {
 

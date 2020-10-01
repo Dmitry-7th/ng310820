@@ -16,6 +16,7 @@ import { CustomInterceptorService } from './services/custom-interceptor.service'
 import { BASE_URL_TOKEN, baseUrl } from '../config';
 import { AuthGuard } from './services/auth.guard';
 import { PreloadService } from './services/preload.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -33,6 +34,8 @@ import { PreloadService } from './services/preload.service';
     MatCheckboxModule,
     FlexLayoutModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     {
