@@ -13,7 +13,7 @@ export class AuthGuard implements CanActivate {
   canActivate(
     _: ActivatedRouteSnapshot,
     {url}: RouterStateSnapshot): Observable<boolean> {
-    return of(false)
+    return of(true)
       .pipe(
         switchMap((isLogged: boolean) => {
           if (!isLogged && (url === '/login' || url === '/signup')) {

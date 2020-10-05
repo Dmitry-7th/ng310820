@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, Validators, ValidationErrors, FormGroup, FormControl } from '@angular/forms';
+import { FormBuilder, Validators, ValidationErrors, FormGroup, FormControl, FormArray } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
@@ -23,7 +23,8 @@ export class SignupComponent implements OnInit {
   ngOnInit(): void {
     this.signupForm = this.fb.group({
       username: ['', this.validators, this.uniqUserName.bind(this)],
-      email: this.fb.control('', this.validators),
+      emails: this.fb.array([this.fb.control('', [...this.validators, Validators.email ])]),
+      male: [false],
       password: this.fb.group({
         password: ['', this.validators],
         cpassword: ['', this.validators]
@@ -53,4 +54,15 @@ export class SignupComponent implements OnInit {
     return this.http.post('/auth/checkUsername', {username});
   };
 
+  public getControls(control: FormGroup, path: string): FormControl[] {
+    return (control.get(path) as FormArray).controls as FormControl[];
+  }
+
+  public addEmail(): void {
+    (this.signupForm.get('emails') as FormArray).push(this.fb.control('', [...this.validators, Validators.email ]));
+  }
+
+  public removeEmail(index: number): void {
+    (this.signupForm.get('emails') as FormArray).removeAt(index);
+  }
 }
