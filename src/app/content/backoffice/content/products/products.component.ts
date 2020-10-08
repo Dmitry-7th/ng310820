@@ -34,7 +34,6 @@ export class ProductsComponent implements OnInit {
   }
 
   public productsFilter(products: IProduct[]): IProduct[] {
-    console.log('productsFilter');
     return products.filter((product: IProduct) =>
       `${product.title} ${product.price}`.toLocaleLowerCase().includes(this.searchText.toLowerCase()));
   }

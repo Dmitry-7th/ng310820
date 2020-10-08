@@ -17,6 +17,7 @@ import { BASE_URL_TOKEN, baseUrl } from '../config';
 import { AuthGuard } from './services/auth.guard';
 import { PreloadService } from './services/preload.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatBadgeModule } from '@angular/material/badge';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FlexLayoutModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatBadgeModule
   ],
   providers: [
     {

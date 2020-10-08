@@ -38,8 +38,8 @@ export class SignupComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
-  public signup(formValue: any): void {
-    console.log(formValue);
+  public signup(_formValue: any): void {
+
   }
 
   public equalValidator(control: FormGroup): ValidationErrors | null {

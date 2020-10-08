@@ -21,7 +21,7 @@ export class ProductsService {
   constructor(
     private http: HttpClient,
   ) {
-    console.log(this.http);
+
   }
 
   public getProducts(): Observable<IProduct[]> {

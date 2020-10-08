@@ -8,10 +8,15 @@ const routes: Route[] = [
     component: BackofficeComponent,
     children: [
       {
+        path: 'cart',
+        loadChildren: () => import('./content/cart/cart.module')
+          .then(mod => mod.CartModule),
+      },
+      {
         path: '',
         loadChildren: () => import('./content/products/products.module')
           .then(mod => mod.ProductsModule),
-      }
+      },
     ]
   },
 ];

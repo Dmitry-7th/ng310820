@@ -1,5 +1,5 @@
-<mat-toolbar color="primary"  fxLayout="row" fxLayoutAlign="space-between center">
-  <div  fxLayout="row">
+<mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between center">
+  <div fxLayout="row">
     <button (click)="drawer?.toggle()"
             mat-icon-button class="example-icon"
             aria-label="Example icon-button with menu icon">
@@ -12,12 +12,9 @@
 
   <div>
 
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-      <mat-icon>favorite</mat-icon>
-    </button>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-      <mat-icon>share</mat-icon>
-    </button>
+    <mat-icon [matBadge]="cartProductCount$ | async" matBadgeColor="warn"
+              [routerLink]="['/backoffice/cart']">shopping_cart
+    </mat-icon>
   </div>
 
 </mat-toolbar>

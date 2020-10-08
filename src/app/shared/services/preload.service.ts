@@ -10,8 +10,7 @@ export class PreloadService implements PreloadAllModules {
     return of(route)
       .pipe(
         delay(5000),
-        mergeMap((r) => {
-          console.log(r);
+        mergeMap(() => {
           return fn();
         })
       );

@@ -3,6 +3,9 @@ import {
   Input,
 } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
+import { Store } from '@ngrx/store';
+import { IState } from '../../../store';
+import { totalProducts } from '../../../store/reducers/cart.reducers';
 
 @Component({
   selector: 'app-header',
@@ -24,8 +27,12 @@ export class HeaderComponent {
   @Input()
   public drawer!: MatDrawer;
 
-  constructor() {
-    console.log('construct', this.title);
+  public cartProductCount$ = this.store.select(totalProducts);
+
+  constructor(
+    private store: Store<IState>
+  ) {
+
   }
 
   // ngOnInit(): void {

@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public login(formValue: any): void {
-    console.log(formValue);
+  public login(_formValue: any): void {
+
   }
 }

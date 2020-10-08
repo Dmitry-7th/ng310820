@@ -1,6 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { IProduct } from '../products.service';
 import { ModalService } from '../../../../../modal/modal.service';
+import { Store } from '@ngrx/store';
+import { IState } from '../../../../../store';
+import { addProductToCart } from '../../../../../store/actions/cart.action';
 
 
 @Component({
@@ -17,7 +20,9 @@ export class ProductCardComponent {
   public isOdd!: boolean;
 
   constructor(
-    private readonly modalService: ModalService) {
+    private readonly modalService: ModalService,
+    private store: Store<IState>
+  ) {
   }
 
   public async addToCart(): Promise<void> {
@@ -27,7 +32,7 @@ export class ProductCardComponent {
       context: {
         product: {...this.product},
         save: () => {
-          console.log('save');
+          this.store.dispatch(addProductToCart({product: this.product}));
           this.modalService.close();
         },
         close: () => {

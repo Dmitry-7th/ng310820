@@ -6,9 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  // constructor(private router: Router) {
-  //   this.router.events.subscribe((v) => {
-  //     console.log(v);
-  //   });
+  // constructor(private appRef: ApplicationRef) {
+  //   setTimeout(() => {
+  //     this.appRef.tick();
+  //   }, 7000);
   // }
 }
